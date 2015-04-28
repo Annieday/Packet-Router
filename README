@@ -1,0 +1,49 @@
+Name:               Anni Dai
+Student ID number:  1264320
+Unix id:            adai1
+Lecture section:    B1
+Instructor's name:  Mohammad Bhuiyan
+Lab section:        H02
+
+This tar contains router and pktgen.
+
+How to compile:
+	By type "make" or "make router", you will compile router.
+	By type "make pktgen", you will compile pktgen.
+	By type "make all", you will compile both router and pktgen.
+
+1. The router program will take three command-line arguments:
+<port number to listen to> <routing table file path> <statistics file path>
+
+The router program will: 
+read its routing table from the specified file 
+The file will consist of multiple lines with the format:  
+<network‐address> <net‐prefix‐length> <nexthop>
+The network‐address would be in IPv4 dotted decimal. The nexthop value would 0, RouterB or RouterC. The three values will be separated by spaces.
+For example: 
+192.224.0.0 16 RouterC 
+
+A 0‐value of nexthop means a direct delivery of a packet to a host within network A. 
+listen to the specified UDP port accept simplified IP packets of the format:  
+<packet ID>, <source IP>, <destination IP>, <TTL>, <payload> 
+Example: 215, 192.168.192.4, 192.224.0.7, 64, “Hello” 
+
+
+2. The packet generator program will take two command‐line arguments: 
+<port number to connect to router>  <packets file path> 
+
+The program will:
+create packets and set <packet ID>, <source IP>, <destination IP>, <TTL>, <payload>
+sends packets to router program
+
+Packets file: 
+After every 20 packets are generated, it will update the packets file 
+The format of the file will be: 
+NetA to NetB: <number of packets generated with source host in Network A and destination host in Network B> 
+NetA to NetC: <number of packets generated with source host in Network A and destination host in Network C> 
+NetB to NetA: <number of packets generated with source host in Network B and destination host in Network A> 
+NetB to NetC: <number of packets generated with source host in Network B and destination host in Network C> 
+NetC to NetA: <number of packets generated with source host in Network C and destination host in Network A> 
+NetC to NetB: <number of packets generated with source host in Network C and destination host in Network B> 
+Invalid Destination: <number of packets generated with invalid destination > 
+
